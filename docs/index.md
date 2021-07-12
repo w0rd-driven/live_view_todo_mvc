@@ -31,4 +31,9 @@ Setup notes following [https://dev.to/amencarini/liveview-todomvc-4jin] and [htt
    2. Run `mix deps.get` to get our latest dependency.
    3. In `lib/todo_mvc_web/router.ex`: `live_dashboard "/dashboard", metrics: TodoMVCWeb.Telemetry, ecto_repos: [TodoMVCWeb.Repo]`
    4. Run `mix phx.server`.
-9. Carefully inject [the base of a TodoMVC app](https://github.com/tastejs/todomvc/blob/master/examples/vanillajs/index.html).
+9. Following step `Create the TodoMVC UI/UX`
+   1. Visit: [http://todomvc.com/examples/vanillajs] add a couple of items to the list.
+   2. Inspect the source using your browser's Dev Tools.
+   3. Grab the head and body from [https://github.com/tastejs/todomvc/blob/master/examples/vanillajs/index.html] to make it cleaner.
+   4. Save as `assets/static/example.html` to have an example with existing items.
+10. Carefully inject [the base of a TodoMVC app](https://github.com/tastejs/todomvc/blob/master/examples/vanillajs/index.html).
