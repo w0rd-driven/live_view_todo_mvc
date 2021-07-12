@@ -11,5 +11,6 @@ Setup notes following [https://dev.to/amencarini/liveview-todomvc-4jin] and [htt
 3. Strip Phoenix banner and Get Started links from `lib/todo_mvc_web/templates/layout/root.html.leex`.
 4. Strip footer columns from `lib/todo_mvc_web/live/page_live.html.leex`.
 5. Create our `items` entity via the LiveView generator `mix phx.gen.live Todo Item items text:string status:string`.
-6. Add routes to `lib/todo_mvc_web/router.ex` under the section `scope "/", TodoMVCWeb do`.
-7. Carefully inject [the base of a TodoMVC app](https://github.com/tastejs/todomvc/blob/master/examples/vanillajs/index.html).
+6. Add routes to `lib/todo_mvc_web/router.ex` under the section `scope "/", TodoMVCWeb do`. Note: This requires killing our running server.
+7. Add [OS Data](https://hexdocs.pm/phoenix_live_dashboard/os_mon.html) to LiveDashboard at [http://localhost:4000/dashboard/home]. Note: This requires killing our running server.
+8. Carefully inject [the base of a TodoMVC app](https://github.com/tastejs/todomvc/blob/master/examples/vanillajs/index.html).
