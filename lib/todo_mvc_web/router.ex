@@ -43,7 +43,7 @@ defmodule TodoMVCWeb.Router do
 
     scope "/" do
       pipe_through :browser
-      live_dashboard "/dashboard", metrics: TodoMVCWeb.Telemetry
+      live_dashboard "/dashboard", metrics: TodoMVCWeb.Telemetry, ecto_repos: [TodoMVC.Repo]
     end
   end
 end
