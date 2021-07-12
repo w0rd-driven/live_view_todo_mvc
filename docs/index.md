@@ -10,5 +10,6 @@ Setup notes following [https://dev.to/amencarini/liveview-todomvc-4jin] and [htt
 2. Run `mix ecto.setup`, selecting `Y` to install `rebar3` locally.
 3. Strip Phoenix banner and Get Started links from `lib/todo_mvc_web/templates/layout/root.html.leex`.
 4. Strip footer columns from `lib/todo_mvc_web/live/page_live.html.leex`.
-5. Carefully inject [the base of a TodoMVC app](https://github.com/tastejs/todomvc/blob/master/examples/vanillajs/index.html).
-6. 
+5. Create our `items` entity via the LiveView generator `mix phx.gen.live Todo Item items text:string status:string`.
+6. Carefully inject [the base of a TodoMVC app](https://github.com/tastejs/todomvc/blob/master/examples/vanillajs/index.html).
+7. 
