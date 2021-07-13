@@ -113,4 +113,20 @@ defmodule TodoMVCWeb.ItemLiveTest do
       assert html =~ "some updated status"
     end
   end
+
+  test "complete/1 returns completed if item.status == 'completed'" do
+    assert TodoMVCWeb.ItemLive.Index.complete(%{status: "completed"}) == "completed"
+  end
+
+  test "complete/1 returns empty string if item.status == ''" do
+    assert TodoMVCWeb.ItemLive.Index.complete(%{status: ""}) == ""
+  end
+
+  test "checked/1 returns checked if item.status == 'checked'" do
+    assert TodoMVCWeb.ItemLive.Index.checked(%{status: "checked"}) == "checked"
+  end
+
+  test "checked/1 returns empty string if item.status == ''" do
+    assert TodoMVCWeb.ItemLive.Index.checked(%{status: ""}) == ""
+  end
 end

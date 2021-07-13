@@ -43,4 +43,20 @@ defmodule TodoMVCWeb.ItemLive.Index do
   defp list_items do
     Todo.list_items()
   end
+
+  # add class "completed" to a list item if item.status = "completed"
+  def complete(item) do
+    case item.status do
+      "completed" -> "completed"
+      _ -> "" # empty string means empty class so no style applied
+    end
+  end
+
+  # add "checked" to input if item.status = "checked"
+  def checked(item) do
+    case item.status do
+      "checked" -> "checked"
+      _ -> "" # empty string means empty class so no style applied
+    end
+  end
 end
