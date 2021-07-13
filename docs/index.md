@@ -37,4 +37,4 @@ Setup notes following [https://dev.to/amencarini/liveview-todomvc-4jin] and [htt
    3. Grab the head and body from [https://github.com/tastejs/todomvc/blob/master/examples/vanillajs/index.html] to make it cleaner.
    4. Save as `assets/static/example.html` to have an example with existing items.
 10. Add todo mvc css to our assets by running `npm install --prefix assets todomvc-app-css`.
-11. Carefully inject [the base of a TodoMVC app](https://github.com/tastejs/todomvc/blob/master/examples/vanillajs/index.html).
+11. Carefully inject [the base of a TodoMVC app](https://github.com/tastejs/todomvc/blob/master/examples/vanillajs/index.html) at the end of `lib/todo_mvc_web/live/item_live/index.html.leex`.
