@@ -1,4 +1,4 @@
-# Day 1 - July 11, 2021
+# Day 1 - July 12, 2021
 
 This starts out super early because I couldn't sleep. Babies have altered my sleep schedule quite a bit and surprisingly as I write this later the next night, I'm not extremely beat.
 

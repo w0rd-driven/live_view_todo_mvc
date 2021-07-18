@@ -2,10 +2,10 @@
   id: "item-form",
   phx_target: @myself,
   phx_change: "validate",
-  phx_submit: "add" %>
+  phx_submit: "save" %>
 
   <%= text_input f, :text, placeholder: "what needs to be done?",
     class: "new-todo", autofocus: "" %>
   <%= error_tag f, :text %>
-  <div style="display: none;"> <%= submit "Add", phx_disable_with: "Adding..." %> </div>
+  <div style="display: none;"> <%= submit "Save", phx_disable_with: "Saving..." %> </div>
 </form>
