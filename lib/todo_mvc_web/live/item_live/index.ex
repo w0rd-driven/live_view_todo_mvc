@@ -55,7 +55,7 @@ defmodule TodoMVCWeb.ItemLive.Index do
   # add "checked" to input if item.status = "checked"
   def checked(item) do
     case item.status do
-      "checked" -> "checked"
+      "completed" -> "checked"
       _ -> "" # empty string means empty class so no style applied
     end
   end
