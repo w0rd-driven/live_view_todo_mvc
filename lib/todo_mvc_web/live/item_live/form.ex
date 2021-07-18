@@ -1,4 +1,4 @@
-defmodule TodoMVCWeb.ItemLive.FormComponent do
+defmodule TodoMVCWeb.ItemLive.Form do
   use TodoMVCWeb, :live_component
 
   alias TodoMVC.Todo
