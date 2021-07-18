@@ -5,7 +5,7 @@ defmodule TodoMVC.Todo.Item do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "items" do
-    field :status, :string
+    field :status, :string, default: "active"
     field :text, :string
 
     timestamps()
@@ -15,6 +15,6 @@ defmodule TodoMVC.Todo.Item do
   def changeset(item, attrs) do
     item
     |> cast(attrs, [:text, :status])
-    |> validate_required([:text, :status])
+    |> validate_required([:text])
   end
 end
