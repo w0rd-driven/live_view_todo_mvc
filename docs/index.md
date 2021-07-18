@@ -41,3 +41,4 @@ Setup notes following [https://dev.to/amencarini/liveview-todomvc-4jin] and [htt
 12. Follow along in the section marked [Render Real Data in the TodoMVC Layout](https://github.com/dwyl/phoenix-todo-list-tutorial#4-render-real-data-in-the-todomvc-layout).
 13. Follow along in the section marked [In-line the New Item Creation Form](https://github.com/dwyl/phoenix-todo-list-tutorial#5-in-line-the-new-item-creation-form).
     1. We deviate slightly because the form component HTML is located at `lib/todo_mvc_web/live/item_live/form_component.html.leex`.
+14. Follow the section marked [Update the `items` Schema to Set `default` Values](https://github.com/dwyl/phoenix-todo-list-tutorial#51-update-the-items-schema-to-set-default-values).
