@@ -39,7 +39,10 @@
 <section class="todoapp">
     <header class="header">
         <h1>todos</h1>
-        <input class="new-todo" placeholder="What needs to be done?" autofocus="">
+        <%= live_component @socket, TodoMVCWeb.ItemLive.Form,
+            id: @item.id || :new,
+            action: :new,
+            item: @item %>
     </header>
     <section class="main" style="display: block;">
         <input id="toggle-all" class="toggle-all" type="checkbox">
