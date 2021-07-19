@@ -42,3 +42,23 @@ Setup notes following [https://dev.to/amencarini/liveview-todomvc-4jin] and [htt
 13. Follow along in the section marked [In-line the New Item Creation Form](https://github.com/dwyl/phoenix-todo-list-tutorial#5-in-line-the-new-item-creation-form).
     1. We deviate slightly because the form component HTML is located at `lib/todo_mvc_web/live/item_live/form_component.html.leex`.
 14. Follow the section marked [Update the `items` Schema to Set `default` Values](https://github.com/dwyl/phoenix-todo-list-tutorial#51-update-the-items-schema-to-set-default-values).
+15. Starting to deviate from [Update `index/2` in `ItemController`](https://github.com/dwyl/phoenix-todo-list-tutorial#52-update-index2-in-itemcontroller) as live views don't have controllers.
+    1. In `assets/css/phoenix.css`.
+       1. Select minified 1st line (ugh) > Right Click > Format Selection. We want this unminified so we can make changes. I've never seen a framework do this and I don't like it at all.
+       2. Comment out input styles for `input[type='text']`.
+    2. In `assets/css/app.scss`
+       1. Restructure CSS to pull in todo mvc css definitions
+       2. Add `margin-bottom: 0rem` to remove it on the `header` class.
+       3. Add `margin-bottom: 0rem` to remove it on the `#item-form` id, our form.
+    3. Rename `FormComponent` to `Form`
+    4. In `lib/todo_mvc_web/live/item_live/index.html.leex`
+       1. Replace `<input class="new-todo" placeholder="What needs to be done?" autofocus="">` with the line
+            ```elixir
+            <%= live_component @socket, TodoMVCWeb.ItemLive.Form,
+                id: @item.id || :new,
+                action: :new,
+                item: @item %>
+            ```
+    5. In `lib/todo_mvc_web/live/item_live/index.ex`
+       1. Inside the function `defp apply_action(socket, :index, _params) do`, `|> assign(:item, %Item{})`. We assign an empty item here to satisfy the live component's id property. I'm sure there's a more elegant way around this but it's fine.
+    6. We can now use the form to enter a new item, hit enter and we should be able to see it displayed.
