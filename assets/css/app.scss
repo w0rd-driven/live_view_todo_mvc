@@ -1,6 +1,14 @@
 /* This file is for your main application css. */
 @import "./phoenix.css";
 
+.header {
+  margin-bottom: 0rem;
+}
+
+#item-form {
+  margin-bottom: 0rem;
+}
+
 /* LiveView specific classes for your customizations */
 .phx-no-feedback.invalid-feedback,
 .phx-no-feedback .invalid-feedback {
