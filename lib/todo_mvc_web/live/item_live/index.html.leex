@@ -67,10 +67,10 @@
               <%= link 'All', class: '#{selected(@filter, "all")}', to: "#", phx_click: "filter", phx_value_filter: "all" %>
             </li>
             <li>
-              <%= link 'Active [#{Enum.count(filter(@items, "active"))}]', class: '#{selected(@filter, "active")}', to: "#", phx_click: "filter", phx_value_filter: "active" %>
+              <%= link 'Active [#{@active_count}]', class: '#{selected(@filter, "active")}', to: "#", phx_click: "filter", phx_value_filter: "active" %>
             </li>
             <li>
-              <%= link 'Completed  [#{Enum.count(filter(@items, "completed"))}]', class: '#{selected(@filter, "completed")}', to: "#", phx_click: "filter", phx_value_filter: "completed" %>
+              <%= link 'Completed  [#{@completed_count}]', class: '#{selected(@filter, "completed")}', to: "#", phx_click: "filter", phx_value_filter: "completed" %>
             </li>
         </ul>
         <button class="clear-completed" style="display: block;">Clear completed</button>

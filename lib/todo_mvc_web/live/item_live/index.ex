@@ -28,12 +28,17 @@ defmodule TodoMVCWeb.ItemLive.Index do
 
   defp apply_action(socket, :index, _params) do
     uuid = Ecto.UUID.generate()
+    items = list_items()
+    active_count = Enum.count(filter(items, "active"))
+    completed_count = Enum.count(filter(items, "completed"))
 
     socket
     |> assign(:page_title, "Listing Items")
     |> assign(:uuid, uuid)
     |> assign(:item, %Item{})
     |> assign(:filter, "all")
+    |> assign(:active_count, active_count)
+    |> assign(:completed_count, completed_count)
   end
 
   defp apply_action(socket, :toggle, %{"id" => id}) do
@@ -55,8 +60,15 @@ defmodule TodoMVCWeb.ItemLive.Index do
   def handle_event("toggle", %{"id" => id}, socket) do
     item = Todo.get_item!(id)
     {:ok, _} = Todo.update_item(item, %{status: toggle_status(item)})
+    items = list_items()
+    active_count = Enum.count(filter(items, "active"))
+    completed_count = Enum.count(filter(items, "completed"))
 
-    {:noreply, assign(socket, :items, list_items())}
+    socket = socket
+    |> assign(:items, items)
+    |> assign(:active_count, active_count)
+    |> assign(:completed_count, completed_count)
+    {:noreply, socket}
   end
 
   def handle_event("filter", %{"filter" => filter}, socket) do
