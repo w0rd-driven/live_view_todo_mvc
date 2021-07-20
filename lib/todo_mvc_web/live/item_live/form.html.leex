@@ -5,6 +5,6 @@
   phx_submit: "save" %>
 
   <%= text_input f, :text, placeholder: "What needs to be done?",
-    class: "new-todo", autofocus: "" %>
+    class: "new-todo", autofocus: true %>
   <div style="display: none;"> <%= submit "Save", phx_disable_with: "Saving..." %> </div>
 </form>
