@@ -32,6 +32,14 @@ defmodule TodoMVCWeb.ItemLive.Index do
     |> assign(:item, %Item{})
   end
 
+  defp apply_action(socket, :toggle, %{"id" => id}) do
+    item = Todo.get_item!(id)
+    Todo.update_item(item, %{status: toggle_status(item)})
+
+    socket
+    |> assign(:item, item)
+  end
+
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
     item = Todo.get_item!(id)
@@ -63,5 +71,12 @@ defmodule TodoMVCWeb.ItemLive.Index do
   # returns integer value of items where item.status == "completed" (not "done")
   def remaining_items(items) do
     Enum.filter(items, fn i -> i.status == "active" end) |> Enum.count
+  end
+
+  def toggle_status(item) do
+    case item.status do
+      "completed" -> "active"
+      "active" -> "completed"
+    end
   end
 end

@@ -5,8 +5,8 @@ defmodule TodoMVCWeb.ItemLiveTest do
 
   alias TodoMVC.Todo
 
-  @create_attrs %{status: "some status", text: "some text"}
-  @update_attrs %{status: "some updated status", text: "some updated text"}
+  @create_attrs %{status: "active", text: "some text"}
+  @update_attrs %{status: "completed", text: "some updated text"}
   @invalid_attrs %{status: nil, text: nil}
 
   defp fixture(:item) do
@@ -142,5 +142,27 @@ defmodule TodoMVCWeb.ItemLiveTest do
   test "remaining_items/1 returns 0 (zero) when no items are status=='active'" do
     items = []
     assert TodoMVCWeb.ItemLive.Index.remaining_items(items) == 0
+  end
+
+  describe "toggle updates the status of an item 'active' > 'completed' | 'completed' > 'active'" do
+    setup [:create_item]
+
+    test "toggle_status/1 item.status 'completed' > 'active'", %{item: item} do
+      assert item.status == "active"
+      # first toggle
+      toggled_item = %{item | status: TodoMVCWeb.ItemLive.Index.toggle_status(item)}
+      assert toggled_item.status == "completed"
+      # second toggle sets status back to "active"
+      assert TodoMVCWeb.ItemLive.Index.toggle_status(toggled_item) == "active"
+    end
+
+    test "toggle/2 updates an item.status 'active' > 'completed'", %{conn: conn, item: item} do
+      {:ok, _toggle_live, _html} = live(conn, Routes.item_index_path(conn, :toggle, item))
+
+      assert item.status == "active"
+      get(conn, Routes.item_index_path(conn, :toggle, item))
+      toggled_item = Todo.get_item!(item.id)
+      assert toggled_item.status == "completed"
+    end
   end
 end

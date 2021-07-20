@@ -81,3 +81,7 @@ Setup notes following [https://dev.to/amencarini/liveview-todomvc-4jin] and [htt
          ```
     2. Add `remaining_items/1` to `lib/todo_mvc_web/live/item_live/index.ex`.
     3. Add `<%= remaining_items(@items) %>` to HTML, leaving the strong tag that was seemingly stripped.
+17. [Toggle a Todo Item's `status` to `completed`](https://github.com/dwyl/phoenix-todo-list-tutorial#7-toggle-a-todo-items-status-to-1)
+    1. Add test for 7.1 in `test/todo_mvc_web/live/item_live_test.exs`.
+    2. Add function for 7.2 in `lib/todo_mvc_web/live/item_live/index.ex`.
+    3. Add route for 7.3 as `live "/items/:id/toggle", ItemLive.Index, :toggle` in `lib/todo_mvc_web/router.ex`.
