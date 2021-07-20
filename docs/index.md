@@ -89,3 +89,9 @@ Setup notes following [https://dev.to/amencarini/liveview-todomvc-4jin] and [htt
        1. [https://github.com/toranb/phoenix-live-view-todomvc/blob/master/lib/todo_web/live/component/todo_item.ex]
        2. [https://github.com/dnsbty/live_view_todos/blob/master/lib/live_view_todos_web/live/todo_live.html.leex]
        3. Settled with the input directly via [https://fullstackphoenix.com/tutorials/add-bulk-actions-in-phoenix-liveview] as this more closely matches the existing field. Setting the checked attribute is easier this way, I couldn't figure out a good way to turn it off with the helper.
+18. [Edit an Item!](https://github.com/dwyl/phoenix-todo-list-tutorial#8-edit-an-item)
+    1. Skip for now as this requires a bit of leg work to deviate correctly, the rest should be pretty straightforward.
+19. [Footer Navigation](https://github.com/dwyl/phoenix-todo-list-tutorial#9-footer-navigation)
+    1. Add route and filter to index live action.
+    2. Create `filter/2` and `selected/2` View Functions but modified to use active/completed vs 0/1.
+    3. Deviate in the section `Update the Footer in the index.html Template`.
