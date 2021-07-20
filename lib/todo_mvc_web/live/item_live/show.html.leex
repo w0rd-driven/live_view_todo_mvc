@@ -1,7 +1,7 @@
 <h1>Show Item</h1>
 
 <%= if @live_action in [:edit] do %>
-  <%= live_modal @socket, TodoMVCWeb.ItemLive.FormComponent,
+  <%= live_modal @socket, TodoMVCWeb.ItemLive.Form,
     id: @item.id,
     title: @page_title,
     action: @live_action,

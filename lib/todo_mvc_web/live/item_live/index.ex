@@ -59,4 +59,9 @@ defmodule TodoMVCWeb.ItemLive.Index do
       _ -> "" # empty string means empty class so no style applied
     end
   end
+
+  # returns integer value of items where item.status == "completed" (not "done")
+  def remaining_items(items) do
+    Enum.filter(items, fn i -> i.status == "active" end) |> Enum.count
+  end
 end

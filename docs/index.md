@@ -42,7 +42,7 @@ Setup notes following [https://dev.to/amencarini/liveview-todomvc-4jin] and [htt
 13. Follow along in the section marked [In-line the New Item Creation Form](https://github.com/dwyl/phoenix-todo-list-tutorial#5-in-line-the-new-item-creation-form).
     1. We deviate slightly because the form component HTML is located at `lib/todo_mvc_web/live/item_live/form_component.html.leex`.
 14. Follow the section marked [Update the `items` Schema to Set `default` Values](https://github.com/dwyl/phoenix-todo-list-tutorial#51-update-the-items-schema-to-set-default-values).
-15. Starting to deviate from [Update `index/2` in `ItemController`](https://github.com/dwyl/phoenix-todo-list-tutorial#52-update-index2-in-itemcontroller) as live views don't have controllers.
+15. Deviate from [Update `index/2` in `ItemController`](https://github.com/dwyl/phoenix-todo-list-tutorial#52-update-index2-in-itemcontroller) as live views don't have controllers.
     1. In `assets/css/phoenix.css`.
        1. Select minified 1st line (ugh) > Right Click > Format Selection. We want this unminified so we can make changes. I've never seen a framework do this and I don't like it at all.
        2. Comment out input styles for `input[type='text']`.
@@ -62,3 +62,22 @@ Setup notes following [https://dev.to/amencarini/liveview-todomvc-4jin] and [htt
     5. In `lib/todo_mvc_web/live/item_live/index.ex`
        1. Inside the function `defp apply_action(socket, :index, _params) do`, `|> assign(:item, %Item{})`. We assign an empty item here to satisfy the live component's id property. I'm sure there's a more elegant way around this but it's fine.
     6. We can now use the form to enter a new item, hit enter and we should be able to see it displayed.
+16. [Display Count of Items in UI](https://github.com/dwyl/phoenix-todo-list-tutorial#6-display-count-of-items-in-ui)
+    1. Test alterations
+         ```elixir
+         test "remaining_items/1 returns count of items where item.status=='active'" do
+            items = [
+               %{text: "one", status: "active"},
+               %{text: "two", status: "active"},
+               %{text: "done", status: "completed"}
+            ]
+            assert TodoMVCWeb.ItemLive.Index.remaining_items(items) == 2
+         end
+
+         test "remaining_items/1 returns 0 (zero) when no items are status=='active'" do
+            items = []
+            assert TodoMVCWeb.ItemLive.Index.remaining_items(items) == 0
+         end
+         ```
+    2. Add `remaining_items/1` to `lib/todo_mvc_web/live/item_live/index.ex`.
+    3. Add `<%= remaining_items(@items) %>` to HTML, leaving the strong tag that was seemingly stripped.
