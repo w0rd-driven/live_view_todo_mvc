@@ -48,6 +48,13 @@ defmodule TodoMVCWeb.ItemLive.Index do
     {:noreply, assign(socket, :items, list_items())}
   end
 
+  def handle_event("toggle", %{"id" => id}, socket) do
+    item = Todo.get_item!(id)
+    {:ok, _} = Todo.update_item(item, %{status: toggle_status(item)})
+
+    {:noreply, assign(socket, :items, list_items())}
+  end
+
   defp list_items do
     Todo.list_items()
   end

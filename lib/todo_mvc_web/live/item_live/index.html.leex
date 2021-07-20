@@ -40,7 +40,7 @@
     <header class="header">
         <h1>todos</h1>
         <%= live_component @socket, TodoMVCWeb.ItemLive.Form,
-            id: @item.id || :new,
+            id: 1 || :new,
             action: :new,
             item: @item,
             return_to: Routes.item_index_path(@socket, :index) %>
@@ -52,7 +52,7 @@
         <%= for item <- @items do %>
           <li data-id="<%= item.id %>" class="<%= complete(item) %>">
             <div class="view">
-              <input <%= checked(item) %> class="toggle" type="checkbox">
+              <input type="checkbox" class="toggle" phx-click="toggle" phx-value-id="<%= item.id %>" <%= checked(item) %> />
               <label><%= item.text %></label>
               <%= link "", class: "destroy", to: "#", phx_click: "delete", phx_value_id: item.id, data: [confirm: "Are you sure?"] %>
             </div>

@@ -85,3 +85,7 @@ Setup notes following [https://dev.to/amencarini/liveview-todomvc-4jin] and [htt
     1. Add test for 7.1 in `test/todo_mvc_web/live/item_live_test.exs`.
     2. Add function for 7.2 in `lib/todo_mvc_web/live/item_live/index.ex`.
     3. Add route for 7.3 as `live "/items/:id/toggle", ItemLive.Index, :toggle` in `lib/todo_mvc_web/router.ex`.
+    4. For 7.4, we tried the checkbox helper from
+       1. [https://github.com/toranb/phoenix-live-view-todomvc/blob/master/lib/todo_web/live/component/todo_item.ex]
+       2. [https://github.com/dnsbty/live_view_todos/blob/master/lib/live_view_todos_web/live/todo_live.html.leex]
+       3. Settled with the input directly via [https://fullstackphoenix.com/tutorials/add-bulk-actions-in-phoenix-liveview] as this more closely matches the existing field. Setting the checked attribute is easier this way, I couldn't figure out a good way to turn it off with the helper.
