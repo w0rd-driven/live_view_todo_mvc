@@ -62,8 +62,10 @@ defmodule TodoMVCWeb.ItemLive.Index do
   def handle_event("filter", %{"filter" => filter}, socket) do
     items = filter(list_items(), filter)
 
-    {:noreply, assign(socket, :filter, filter)}
-    {:noreply, assign(socket, :items, items)}
+    socket = socket
+    |> assign(:items, items)
+    |> assign(:filter, filter)
+    {:noreply, socket}
   end
 
   defp list_items do
