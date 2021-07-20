@@ -1,0 +1,3 @@
+# Day 3 - July 18, 2021
+
+I make considerable progress in getting the form integrated. The commits I started the day with (5:09pm) were holdovers from before where I tried but got considerably further when the day ended. LiveView isn't too hard but there is a little bit of magic in the component + .html.leex. I also contend I'm not really doing things right but injecting corrections to move the hybrid implementation along. We can shave off the functions that we don't use at the end, this gives us the appearance that we started fresh. Ideally, I prefer this approach. I like understanding how a generator works and try to work backwards as they tend to give an example where I need to visually see results.
