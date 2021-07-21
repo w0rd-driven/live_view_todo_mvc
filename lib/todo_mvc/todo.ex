@@ -101,4 +101,9 @@ defmodule TodoMVC.Todo do
   def change_item(%Item{} = item, attrs \\ %{}) do
     Item.changeset(item, attrs)
   end
+
+  def clear_completed() do
+    query = from(item in Item, where: item.status == "completed")
+    Repo.update_all(query, set: [status: "archived"])
+  end
 end

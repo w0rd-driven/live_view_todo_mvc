@@ -95,3 +95,11 @@ Setup notes following [https://dev.to/amencarini/liveview-todomvc-4jin] and [htt
     1. Add route and filter to index live action.
     2. Create `filter/2` and `selected/2` View Functions but modified to use active/completed vs 0/1.
     3. Deviate in the section `Update the Footer in the index.html Template`.
+20. [Clear Completed](https://github.com/dwyl/phoenix-todo-list-tutorial#10-clear-completed)
+    1. Deviate to place `clear_completed/0` query in `lib/todo_mvc/todo.ex` as that keeps the Repo usage tidy.
+    2. Add a `handle_event` for `clear_completed` in `lib/todo_mvc_web/live/item_live/index.ex`.
+    3. Modify both `list_items/0` and `filter/2` in `lib/todo_mvc_web/live/item_live/index.ex`. We want to filter out the new `archived` status, otherwise those tasks will be visible.
+         ```elixir
+            Enum.filter(Todo.list_items(), fn i -> i.status == "active" || i.status == "completed" end)
+         ```
+    4. Modify `toggle_status/1` in `lib/todo_mvc_web/live/item_live/index.ex` to add a clause for `archived` to change to `archived`. It's unclear what we should really toggle that to, so we opt for doing nothing.

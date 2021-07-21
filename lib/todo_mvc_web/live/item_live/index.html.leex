@@ -64,15 +64,15 @@
         <span class="todo-count"><strong><%= remaining_items(@items) %></strong> items left</span>
         <ul class="filters">
             <li>
-              <%= link 'All', class: '#{selected(@filter, "all")}', to: "#", phx_click: "filter", phx_value_filter: "all" %>
+              <%= link 'All', class: '#{selected(@filter, "all")}', to: "#", phx_click: "filter", phx_value_filter: "all", style: "cursor: pointer" %>
             </li>
             <li>
-              <%= link 'Active [#{@active_count}]', class: '#{selected(@filter, "active")}', to: "#", phx_click: "filter", phx_value_filter: "active" %>
+              <%= link 'Active [#{@active_count}]', class: '#{selected(@filter, "active")}', to: "#", phx_click: "filter", phx_value_filter: "active", style: "cursor: pointer" %>
             </li>
             <li>
-              <%= link 'Completed  [#{@completed_count}]', class: '#{selected(@filter, "completed")}', to: "#", phx_click: "filter", phx_value_filter: "completed" %>
+              <%= link 'Completed  [#{@completed_count}]', class: '#{selected(@filter, "completed")}', to: "#", phx_click: "filter", phx_value_filter: "completed", style: "cursor: pointer" %>
             </li>
         </ul>
-        <button class="clear-completed" style="display: block;">Clear completed</button>
+        <%= link "Clear completed", class: "clear-completed", to: "#", phx_click: "clear_completed" %>
     </footer>
 </section>

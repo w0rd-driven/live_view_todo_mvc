@@ -80,8 +80,14 @@ defmodule TodoMVCWeb.ItemLive.Index do
     {:noreply, socket}
   end
 
+  def handle_event("clear_completed", %{}, socket) do
+    {:ok, _} = Todo.clear_completed()
+
+    {:noreply, assign(socket, :items, list_items())}
+  end
+
   defp list_items do
-    Todo.list_items()
+    Enum.filter(Todo.list_items(), fn i -> i.status == "active" || i.status == "completed" end)
   end
 
   # add class "completed" to a list item if item.status = "completed"
@@ -109,12 +115,13 @@ defmodule TodoMVCWeb.ItemLive.Index do
     case item.status do
       "completed" -> "active"
       "active" -> "completed"
+      "archived" -> "archived"
     end
   end
 
   def filter(items, str) do
     case str do
-      "all" -> items
+      "all" -> Enum.filter(items, fn i -> i.status == "active" || i.status == "completed" end)
       "active" -> Enum.filter(items, fn i -> i.status == "active" end)
       "completed" -> Enum.filter(items, fn i -> i.status == "completed" end)
     end
