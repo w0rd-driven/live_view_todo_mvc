@@ -116,3 +116,7 @@ Setup notes following [https://dev.to/amencarini/liveview-todomvc-4jin] and [htt
          end
          ```
     2. Wrap the footer element in `<%= if got_items?(@items) do %>` in `lib/todo_mvc_web/live/item_live/index.html.leex`.
+23. [Route `/` to `ItemController.index/2`](https://github.com/dwyl/phoenix-todo-list-tutorial#113-route--to-itemcontrollerindex2)
+    1. In `lib/todo_mvc_web/router.ex`, modify the default route as `live "/", ItemLive.Index, :index`
+24. [Add Turbolinks to Eliminate Page Refresh](https://github.com/dwyl/phoenix-todo-list-tutorial#114-add-turbolinks-to-eliminate-page-refresh)
+    1. Turns out we don't need this because we're using LiveView. The page already refreshes without a reload.
