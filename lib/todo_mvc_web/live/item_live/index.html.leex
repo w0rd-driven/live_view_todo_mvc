@@ -46,7 +46,7 @@
             return_to: Routes.item_index_path(@socket, :index) %>
     </header>
     <section class="main" style="display: block;">
-        <input id="toggle-all" class="toggle-all" type="checkbox">
+        <input id="toggle-all" class="toggle-all" type="checkbox" phx-click="toggle_all" >
         <label for="toggle-all">Mark all as complete</label>
         <ul class="todo-list">
         <%= for item <- @items do %>

@@ -120,3 +120,9 @@ Setup notes following [https://dev.to/amencarini/liveview-todomvc-4jin] and [htt
     1. In `lib/todo_mvc_web/router.ex`, modify the default route as `live "/", ItemLive.Index, :index`
 24. [Add Turbolinks to Eliminate Page Refresh](https://github.com/dwyl/phoenix-todo-list-tutorial#114-add-turbolinks-to-eliminate-page-refresh)
     1. Turns out we don't need this because we're using LiveView. The page already refreshes without a reload.
+25. Extra credit
+    1. Fix toggle all checkbox
+       1. In `lib/todo_mvc_web/live/item_live/index.html.leex` change `toggle-all` element to `<input id="toggle-all" class="toggle-all" type="checkbox" phx-click="toggle_all" >`.
+       2. In `lib/todo_mvc_web/live/item_live/index.ex`
+          1. Add `toggle_all` event that gets our list and iterates through, calling toggle on each.
+          2. Refactor both `toggle` and `toggle_all` event to use a `toggle` function that gets the filtered list and assigns the counts to the socket.

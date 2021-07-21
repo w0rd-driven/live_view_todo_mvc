@@ -60,15 +60,16 @@ defmodule TodoMVCWeb.ItemLive.Index do
   def handle_event("toggle", %{"id" => id}, socket) do
     item = Todo.get_item!(id)
     {:ok, _} = Todo.update_item(item, %{status: toggle_status(item)})
-    items = list_items()
-    active_count = Enum.count(filter(items, "active"))
-    completed_count = Enum.count(filter(items, "completed"))
+    {:noreply, toggle(socket)}
+  end
 
-    socket = socket
-    |> assign(:items, items)
-    |> assign(:active_count, active_count)
-    |> assign(:completed_count, completed_count)
-    {:noreply, socket}
+  def handle_event("toggle_all", %{}, socket) do
+    items = list_items()
+    for item <- items do
+      {:ok, _} = Todo.update_item(item, %{status: toggle_status(item)})
+    end
+
+    {:noreply, toggle(socket)}
   end
 
   def handle_event("filter", %{"filter" => filter}, socket) do
@@ -117,6 +118,17 @@ defmodule TodoMVCWeb.ItemLive.Index do
       "active" -> "completed"
       "archived" -> "archived"
     end
+  end
+
+  def toggle(socket) do
+    items = list_items()
+    active_count = Enum.count(filter(items, "active"))
+    completed_count = Enum.count(filter(items, "completed"))
+
+    socket
+    |> assign(:items, items)
+    |> assign(:active_count, active_count)
+    |> assign(:completed_count, completed_count)
   end
 
   def filter(items, str) do
