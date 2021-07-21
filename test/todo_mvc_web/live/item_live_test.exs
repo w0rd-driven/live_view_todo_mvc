@@ -48,7 +48,7 @@ defmodule TodoMVCWeb.ItemLiveTest do
         |> follow_redirect(conn, Routes.item_index_path(conn, :index))
 
       assert html =~ "Item created successfully"
-      assert html =~ "some status"
+      assert html =~ "active"
     end
 
     test "updates item in listing", %{conn: conn, item: item} do
@@ -70,7 +70,7 @@ defmodule TodoMVCWeb.ItemLiveTest do
         |> follow_redirect(conn, Routes.item_index_path(conn, :index))
 
       assert html =~ "Item updated successfully"
-      assert html =~ "some updated status"
+      assert html =~ "completed"
     end
 
     test "deletes item in listing", %{conn: conn, item: item} do
@@ -110,7 +110,7 @@ defmodule TodoMVCWeb.ItemLiveTest do
         |> follow_redirect(conn, Routes.item_show_path(conn, :show, item))
 
       assert html =~ "Item updated successfully"
-      assert html =~ "some updated status"
+      assert html =~ "completed"
     end
   end
 
@@ -142,6 +142,15 @@ defmodule TodoMVCWeb.ItemLiveTest do
   test "remaining_items/1 returns 0 (zero) when no items are status=='active'" do
     items = []
     assert TodoMVCWeb.ItemLive.Index.remaining_items(items) == 0
+  end
+
+  test "pluralise/1 returns item for 1 item and items for < 1 <" do
+    assert TodoMVCWeb.ItemLive.Index.pluralise([%{text: "one", status: "active"}]) == "item"
+    assert TodoMVCWeb.ItemLive.Index.pluralise([
+      %{text: "one", status: "active"},
+      %{text: "two", status: "active"}
+    ]) == "items"
+    assert TodoMVCWeb.ItemLive.Index.pluralise([%{text: "one", status: "completed"}]) == "items"
   end
 
   describe "toggle updates the status of an item 'active' > 'completed' | 'completed' > 'active'" do

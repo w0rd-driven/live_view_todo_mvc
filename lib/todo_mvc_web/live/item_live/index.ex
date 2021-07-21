@@ -133,4 +133,13 @@ defmodule TodoMVCWeb.ItemLive.Index do
       false -> ""
     end
   end
+
+  # pluralise the word item when the number of items is greather/less than 1
+  def pluralise(items) do
+    # items where status < 1 is equal to Zero or Greater than One:
+    case remaining_items(items) == 0 || remaining_items(items) > 1 do
+      true -> "items"
+      false -> "item"
+    end
+  end
 end

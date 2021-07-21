@@ -103,3 +103,7 @@ Setup notes following [https://dev.to/amencarini/liveview-todomvc-4jin] and [htt
             Enum.filter(Todo.list_items(), fn i -> i.status == "active" || i.status == "completed" end)
          ```
     4. Modify `toggle_status/1` in `lib/todo_mvc_web/live/item_live/index.ex` to add a clause for `archived` to change to `archived`. It's unclear what we should really toggle that to, so we opt for doing nothing.
+21. [Pluralise Items Left](https://github.com/dwyl/phoenix-todo-list-tutorial#111-pluralise-items-left)
+    1. Place our test in `test/todo_mvc_web/live/item_live_test.exs` changing `ItemView` and item `status`.
+    2. Place `pluralize/1` in `lib/todo_mvc_web/live/item_live/index.ex`.
+    3. Place the `pluralize(items)` usage in `lib/todo_mvc_web/live/item_live/index.html.leex`.

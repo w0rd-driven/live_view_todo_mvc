@@ -61,7 +61,7 @@
         </ul>
     </section>
     <footer class="footer" style="display: block;">
-        <span class="todo-count"><strong><%= remaining_items(@items) %></strong> items left</span>
+        <span class="todo-count"><strong><%= remaining_items(@items) %></strong> <%= pluralise(@items) %> left</span>
         <ul class="filters">
             <li>
               <%= link 'All', class: '#{selected(@filter, "all")}', to: "#", phx_click: "filter", phx_value_filter: "all", style: "cursor: pointer" %>
