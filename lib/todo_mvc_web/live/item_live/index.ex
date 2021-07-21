@@ -142,4 +142,9 @@ defmodule TodoMVCWeb.ItemLive.Index do
       false -> "item"
     end
   end
+
+  def got_items?(items) do
+    items
+    |> Enum.count(fn i -> i.status == "active" || i.status == "completed" end) > 0
+  end
 end

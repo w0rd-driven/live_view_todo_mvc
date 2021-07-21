@@ -107,3 +107,12 @@ Setup notes following [https://dev.to/amencarini/liveview-todomvc-4jin] and [htt
     1. Place our test in `test/todo_mvc_web/live/item_live_test.exs` changing `ItemView` and item `status`.
     2. Place `pluralize/1` in `lib/todo_mvc_web/live/item_live/index.ex`.
     3. Place the `pluralize(items)` usage in `lib/todo_mvc_web/live/item_live/index.html.leex`.
+22. [Hide Footer When There Are Zero Items](https://github.com/dwyl/phoenix-todo-list-tutorial#112-hide-footer-when-there-are-zero-items).
+    1. Place `got_items?/1` in `lib/todo_mvc_web/live/item_live/index.ex` as `Enum.count` can skip the filter step.
+         ```elixir
+         def got_items?(items) do
+            items
+            |> Enum.count(fn i -> i.status == "active" || i.status == "completed" end) > 0
+         end
+         ```
+    2. Wrap the footer element in `<%= if got_items?(@items) do %>` in `lib/todo_mvc_web/live/item_live/index.html.leex`.
