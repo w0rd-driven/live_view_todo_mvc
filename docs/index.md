@@ -90,7 +90,39 @@ Setup notes following [https://dev.to/amencarini/liveview-todomvc-4jin] and [htt
        2. [https://github.com/dnsbty/live_view_todos/blob/master/lib/live_view_todos_web/live/todo_live.html.leex]
        3. Settled with the input directly via [https://fullstackphoenix.com/tutorials/add-bulk-actions-in-phoenix-liveview] as this more closely matches the existing field. Setting the checked attribute is easier this way, I couldn't figure out a good way to turn it off with the helper.
 18. [Edit an Item!](https://github.com/dwyl/phoenix-todo-list-tutorial#8-edit-an-item)
-    1. Skip for now as this requires a bit of leg work to deviate correctly, the rest should be pretty straightforward.
+    1. Comment out `label`, `button` and `form` sections in `assets/css/phoenix.css` that deal with margins.
+    2. In `lib/todo_mvc_web/live/item_live/form.html.leex` change the form to have a class of `item-form` with an id of `item-form-#{@item.id}` to make the id unique. This form may appear at least twice so it needs to be differentiated.
+    3. In `lib/todo_mvc_web/live/item_live/index.ex`
+       1. Add `|> assign(:editing, %Item{})` to index `apply_action` function to assign `@editing` on page load.
+       2. Add `toggle_edit` event as
+            ```elixir
+            def handle_event("toggle_edit", %{"id" => id}, socket) do
+               item = Todo.get_item!(id)
+               {:noreply, assign(socket, editing: item)}
+            end
+            ```
+       3. Add `editing/2` function as
+            ```elixir
+            def editing(editing, item) do
+               if editing.id == item.id do
+                  " editing"
+               end
+            end
+            ```
+    4. In `lib/todo_mvc_web/live/item_live/index.html.leex`
+       1. Add `<%= editing(@editing, item) %>` to `.todo-list li` element.
+       2. Change the label inner text to `<%= link item.text, to: "#", phx_click: "toggle_edit", phx_value_id: item.id %>` to add our edit link.
+       3. Below the `div .view` element add a conditional form render
+            ```elixir
+            <%= if item.id == @editing.id do %>
+               <%= live_component @socket, TodoMVCWeb.ItemLive.Form,
+                  id: item.id,
+                  class: "edit",
+                  action: :edit,
+                  item: item,
+                  return_to: Routes.item_index_path(@socket, :index) %>
+            <% end %>
+            ```
 19. [Footer Navigation](https://github.com/dwyl/phoenix-todo-list-tutorial#9-footer-navigation)
     1. Add route and filter to index live action.
     2. Create `filter/2` and `selected/2` View Functions but modified to use active/completed vs 0/1.

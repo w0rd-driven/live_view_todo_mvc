@@ -39,6 +39,7 @@ defmodule TodoMVCWeb.ItemLive.Index do
     |> assign(:filter, "all")
     |> assign(:active_count, active_count)
     |> assign(:completed_count, completed_count)
+    |> assign(:editing, %Item{})
   end
 
   defp apply_action(socket, :toggle, %{"id" => id}) do
@@ -61,6 +62,11 @@ defmodule TodoMVCWeb.ItemLive.Index do
     item = Todo.get_item!(id)
     {:ok, _} = Todo.update_item(item, %{status: toggle_status(item)})
     {:noreply, toggle(socket)}
+  end
+
+  def handle_event("toggle_edit", %{"id" => id}, socket) do
+    item = Todo.get_item!(id)
+    {:noreply, assign(socket, editing: item)}
   end
 
   def handle_event("toggle_all", %{}, socket) do
@@ -96,6 +102,12 @@ defmodule TodoMVCWeb.ItemLive.Index do
     case item.status do
       "completed" -> "completed"
       _ -> "" # empty string means empty class so no style applied
+    end
+  end
+
+  def editing(editing, item) do
+    if editing.id == item.id do
+      " editing"
     end
   end
 

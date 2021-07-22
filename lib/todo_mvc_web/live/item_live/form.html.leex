@@ -1,5 +1,6 @@
 <%= f = form_for @changeset, "#",
-  id: "item-form",
+  id: "item-form-#{@item.id}",
+  class: "item-form",
   phx_target: @myself,
   phx_change: "validate",
   phx_submit: "save" %>

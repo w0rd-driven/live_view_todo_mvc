@@ -5,7 +5,7 @@
   margin-bottom: 0rem;
 }
 
-#item-form {
+.item-form {
   margin-bottom: 0rem;
 }
 
@@ -311,12 +311,18 @@ body {
 
 .todo-list li label {
 	word-break: break-all;
-	padding: 15px 15px 15px 60px;
+	padding: 18px 16px 18px 60px;
 	display: block;
 	line-height: 1.2;
 	transition: color 0.4s;
 	font-weight: 400;
 	color: #484848;
+}
+
+.view a, .view a:visited {
+	display: block;
+	text-decoration: none;
+	color: #2b2d2f;
 }
 
 .todo-list li.completed label {

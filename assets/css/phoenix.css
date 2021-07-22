@@ -250,13 +250,13 @@ textarea {
   min-height: 6.5rem
 }
 
-label,
+/* label,
 legend {
   display: block;
   font-size: 1.6rem;
   font-weight: 700;
   margin-bottom: .5rem
-}
+} */
 
 fieldset {
   border-width: 0;
@@ -481,13 +481,13 @@ ul {
   list-style: circle inside
 }
 
-.button,
+/* .button,
 button,
 dd,
 dt,
 li {
   margin-bottom: 1.0rem
-}
+} */
 
 fieldset,
 input,
@@ -496,7 +496,7 @@ textarea {
   margin-bottom: 1.5rem
 }
 
-blockquote,
+/* blockquote,
 dl,
 figure,
 form,
@@ -506,7 +506,7 @@ pre,
 table,
 ul {
   margin-bottom: 2.5rem
-}
+} */
 
 table {
   border-spacing: 0;

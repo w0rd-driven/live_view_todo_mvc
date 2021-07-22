@@ -1,41 +1,3 @@
-<h1>Listing Items</h1>
-
-<%= if @live_action in [:new, :edit] do %>
-  <%= live_modal @socket, TodoMVCWeb.ItemLive.Form,
-    id: @item.id || :new,
-    title: @page_title,
-    action: @live_action,
-    item: @item,
-    return_to: Routes.item_index_path(@socket, :index) %>
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Text</th>
-      <th>Status</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody id="items">
-    <%= for item <- @items do %>
-      <tr id="item-<%= item.id %>">
-        <td><%= item.text %></td>
-        <td><%= item.status %></td>
-
-        <td>
-          <span><%= live_redirect "Show", to: Routes.item_show_path(@socket, :show, item) %></span>
-          <span><%= live_patch "Edit", to: Routes.item_index_path(@socket, :edit, item) %></span>
-          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: item.id, data: [confirm: "Are you sure?"] %></span>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<span><%= live_patch "New Item", to: Routes.item_index_path(@socket, :new) %></span>
-
 <section class="todoapp">
     <header class="header">
         <h1>todos</h1>
@@ -50,12 +12,20 @@
         <label for="toggle-all">Mark all as complete</label>
         <ul class="todo-list">
         <%= for item <- @items do %>
-          <li data-id="<%= item.id %>" class="<%= complete(item) %>">
+          <li data-id="<%= item.id %>" class="<%= complete(item) %><%= editing(@editing, item) %>">
             <div class="view">
               <input type="checkbox" class="toggle" phx-click="toggle" phx-value-id="<%= item.id %>" <%= checked(item) %> />
-              <label><%= item.text %></label>
+              <label><%= link item.text, to: "#", phx_click: "toggle_edit", phx_value_id: item.id %></label>
               <%= link "", class: "destroy", to: "#", phx_click: "delete", phx_value_id: item.id, data: [confirm: "Are you sure?"] %>
             </div>
+            <%= if item.id == @editing.id do %>
+              <%= live_component @socket, TodoMVCWeb.ItemLive.Form,
+                  id: item.id,
+                  class: "edit",
+                  action: :edit,
+                  item: item,
+                  return_to: Routes.item_index_path(@socket, :index) %>
+            <% end %>
           </li>
         <% end %>
         </ul>
