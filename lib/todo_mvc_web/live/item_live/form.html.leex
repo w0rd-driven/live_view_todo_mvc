@@ -6,6 +6,6 @@
   phx_submit: "save" %>
 
   <%= text_input f, :text, placeholder: "What needs to be done?",
-    class: "new-todo", autofocus: true %>
+    class: "new-todo edit", autofocus: true, phx_blur: :blur_text, phx_target: @myself %>
   <div style="display: none;"> <%= submit "Save", phx_disable_with: "Saving..." %> </div>
 </form>

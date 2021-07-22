@@ -158,3 +158,20 @@ Setup notes following [https://dev.to/amencarini/liveview-todomvc-4jin] and [htt
        2. In `lib/todo_mvc_web/live/item_live/index.ex`
           1. Add `toggle_all` event that gets our list and iterates through, calling toggle on each.
           2. Refactor both `toggle` and `toggle_all` event to use a `toggle` function that gets the filtered list and assigns the counts to the socket.
+    2. Add `blur_text` event in Form component to disable editing when click out occurs.
+       1. In `lib/todo_mvc_web/live/item_live/index.ex` add `handle_info/2`
+            ```elixir
+            @impl true
+            def handle_info({:blur_text, _params}, socket) do
+               item = %Item{}
+               {:noreply, assign(socket, editing: item)}
+            end
+            ```
+       2. In `lib/todo_mvc_web/live/item_live/form.html.leex` add `, phx_blur: :blur_text, phx_target: @myself` to the `text_input` helper.
+       3. In `lib/todo_mvc_web/live/item_live/form.ex` add `handle_event/3`
+            ```elixir
+            def handle_event("blur_text", _params, socket) do
+               send self(), {:blur_text, %{}}
+               {:noreply, socket}
+            end
+            ```

@@ -93,6 +93,12 @@ defmodule TodoMVCWeb.ItemLive.Index do
     {:noreply, assign(socket, :items, list_items())}
   end
 
+  @impl true
+  def handle_info({:blur_text, _params}, socket) do
+    item = %Item{}
+    {:noreply, assign(socket, editing: item)}
+  end
+
   defp list_items do
     Enum.filter(Todo.list_items(), fn i -> i.status == "active" || i.status == "completed" end)
   end

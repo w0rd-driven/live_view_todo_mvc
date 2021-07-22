@@ -27,6 +27,11 @@ defmodule TodoMVCWeb.ItemLive.Form do
     save_item(socket, socket.assigns.action, item_params)
   end
 
+  def handle_event("blur_text", _params, socket) do
+    send self(), {:blur_text, %{}}
+    {:noreply, socket}
+  end
+
   defp save_item(socket, :edit, item_params) do
     case Todo.update_item(socket.assigns.item, item_params) do
       {:ok, _item} ->
