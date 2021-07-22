@@ -175,3 +175,6 @@ Setup notes following [https://dev.to/amencarini/liveview-todomvc-4jin] and [htt
                {:noreply, socket}
             end
             ```
+    3. Add `double-click` behavior from [Edit an Item!](https://github.com/dwyl/phoenix-todo-list-tutorial#8-edit-an-item)
+       1. Add css to `assets/css/app.scss` but using the word `double-click` instead of abbreviated.
+       2. In `lib/todo_mvc_web/live/item_live/index.html.leex` change label link helper to add a blank span afterward. This needs to be a sibbling to work.

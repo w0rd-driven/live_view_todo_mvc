@@ -15,7 +15,10 @@
           <li data-id="<%= item.id %>" class="<%= complete(item) %><%= editing(@editing, item) %>">
             <div class="view">
               <input type="checkbox" class="toggle" phx-click="toggle" phx-value-id="<%= item.id %>" <%= checked(item) %> />
-              <label><%= link item.text, to: "#", phx_click: "toggle_edit", phx_value_id: item.id %></label>
+              <label>
+                <%= link item.text, to: "#", phx_click: "toggle_edit", phx_value_id: item.id, class: "double-click" %>
+                <span></span>
+              </label>
               <%= link "", class: "destroy", to: "#", phx_click: "delete", phx_value_id: item.id, data: [confirm: "Are you sure?"] %>
             </div>
             <%= if item.id == @editing.id do %>
