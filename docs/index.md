@@ -178,3 +178,14 @@ Setup notes following [https://dev.to/amencarini/liveview-todomvc-4jin] and [htt
     3. Add `double-click` behavior from [Edit an Item!](https://github.com/dwyl/phoenix-todo-list-tutorial#8-edit-an-item)
        1. Add css to `assets/css/app.scss` but using the word `double-click` instead of abbreviated.
        2. In `lib/todo_mvc_web/live/item_live/index.html.leex` change label link helper to add a blank span afterward. This needs to be a sibbling to work.
+    4. Add focus hook outlined in [https://dev.to/amencarini/liveview-todomvc-part-2-params-and-hooks-2l5] as we need to set focus when the edit form is shown.
+       1. In `lib/todo_mvc_web/live/item_live/index.html.leex`, change the item li to `<li id="item-<%= item.id %>" data-id="<%= item.id %>" class="<%= complete(item) %><%= editing(@editing, item) %>" phx-hook="Item">`
+          1. This adds our Item hook and generates a unique dom id, required by hooks or you'll see a console message `phoenix_live_view.js?2c90:1 no DOM ID for hook "Item". Hooks require a unique ID on each element. <li data-id=​"83c18ff1-c0ad-42fb-bbca-2dca1598a923" class=​"completed" phx-hook=​"Item">​…​</li>`
+       2. Add the hook from the url in `assets/js/app.js` before our `let liveSocket` initialization.
+       3. Change the `liveSocket` line to as we wish to keep our csrfToken params.
+            ```js
+            let liveSocket = new LiveSocket("/live", Socket, {
+            params: {_csrf_token: csrfToken},
+            hooks: hooks
+            })
+            ```
