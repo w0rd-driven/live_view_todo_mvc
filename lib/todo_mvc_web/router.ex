@@ -22,9 +22,6 @@ defmodule TodoMVCWeb.Router do
     live "/items/new", ItemLive.Index, :new
     live "/items/:id/edit", ItemLive.Index, :edit
     live "/items/:id/toggle", ItemLive.Index, :toggle
-
-    live "/items/:id", ItemLive.Show, :show
-    live "/items/:id/show/edit", ItemLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

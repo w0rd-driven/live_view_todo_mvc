@@ -6,7 +6,19 @@ defmodule TodoMVCWeb.ItemLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, :items, list_items())}
+    uuid = Ecto.UUID.generate()
+    items = list_items()
+    active_count = Enum.count(filter(items, "active"))
+    completed_count = Enum.count(filter(items, "completed"))
+
+    socket = socket
+    |> assign(:uuid, uuid)
+    |> assign(:item, %Item{})
+    |> assign(:filter, "all")
+    |> assign(:active_count, active_count)
+    |> assign(:completed_count, completed_count)
+    |> assign(:editing, %Item{})
+    {:ok, assign(socket, :items, items)}
   end
 
   @impl true
@@ -14,32 +26,10 @@ defmodule TodoMVCWeb.ItemLive.Index do
     {:noreply, apply_action(socket, socket.assigns.live_action, params)}
   end
 
-  defp apply_action(socket, :edit, %{"id" => id}) do
-    socket
-    |> assign(:page_title, "Edit Item")
-    |> assign(:item, Todo.get_item!(id))
-  end
-
-  defp apply_action(socket, :new, _params) do
-    socket
-    |> assign(:page_title, "New Item")
-    |> assign(:item, %Item{})
-  end
-
   defp apply_action(socket, :index, _params) do
     uuid = Ecto.UUID.generate()
-    items = list_items()
-    active_count = Enum.count(filter(items, "active"))
-    completed_count = Enum.count(filter(items, "completed"))
-
     socket
-    |> assign(:page_title, "Listing Items")
     |> assign(:uuid, uuid)
-    |> assign(:item, %Item{})
-    |> assign(:filter, "all")
-    |> assign(:active_count, active_count)
-    |> assign(:completed_count, completed_count)
-    |> assign(:editing, %Item{})
   end
 
   defp apply_action(socket, :toggle, %{"id" => id}) do

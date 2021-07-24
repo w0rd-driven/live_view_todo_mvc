@@ -12,7 +12,7 @@
         <label for="toggle-all">Mark all as complete</label>
         <ul class="todo-list">
         <%= for item <- @items do %>
-          <li id="item-<%= item.id %>" data-id="<%= item.id %>" class="<%= complete(item) %><%= editing(@editing, item) %>" phx-hook="Item">
+          <li id="list-item-<%= item.id %>" data-id="<%= item.id %>" class="<%= complete(item) %><%= editing(@editing, item) %>" phx-hook="Item">
             <div class="view">
               <input type="checkbox" class="toggle" phx-click="toggle" phx-value-id="<%= item.id %>" <%= checked(item) %> />
               <label>
