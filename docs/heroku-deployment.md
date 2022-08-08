@@ -41,3 +41,8 @@ We're following along with [the official documentation](https://hexdocs.pm/phoen
 12. Generated a new secret key base via `mix phx.gen.secret`.
 13. Configure Heroku's `SECRET_KEY_BASE` environment variable via `heroku config:set SECRET_KEY_BASE="(key)"`.
 14. Deploy via `git push heroku master`.
+15. Visit [https://pacific-savannah-85771.herokuapp.com/] to receive `Internal Server Error` message.
+    1. Investigate problem by looking at the Postgres data store.
+    2. The utilization section showed `0 tables`.
+16. Create the database table structure using `heroku run "POOL_SIZE=2 mix ecto.migrate"`.
+17. The site [https://pacific-savannah-85771.herokuapp.com/] now works as expected.

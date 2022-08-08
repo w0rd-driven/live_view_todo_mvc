@@ -7,6 +7,7 @@ Implementation of TodoMVC in Phoenix v1.5.9 / LiveView v0.15.7
 * [Summary](#summary)
 * [Instructions](#instructions)
 * [Developer Diary](#developer-diary)
+* [Deploying to Heroku](#deploying-to-heroku)
 * [Phoenix Readme](#phoenix-readme)
     * [Learn more](#learn-more)
 
@@ -37,6 +38,10 @@ This was one of my earliest Phoenix projects and my very first introduction to c
 6. [Day 6](docs/diary/day06.md)
 7. [Day 7](docs/diary/day07.md)
 8. [Day 8 & Postmortem](docs/diary/day08.md)
+
+## Deploying to Heroku
+
+Follow the [instructions](docs/heroku-deployment.md) to deploy this application to Heroku.
 
 ## Phoenix Readme
 
