@@ -1,6 +1,15 @@
 # Heroku Deployment
 
-**Note: This application is installed at `pacific-savannah-85771.herokuapp.com`. If you wish to deploy to your own Heroku instance, replace the value below with your url.**
+### Table of Contents
+
+* [Supported Builds](#supported-builds)
+* [Instructions](#instructions)
+
+## Supported Builds
+
+It wasn't terribly easy to find the supported builds for OTP. While the url below from the Phoenix Framework documentation points to the Github repository, the [Version Support](https://github.com/HashNuke/heroku-buildpack-elixir#version-support) heading is what we're really after as we're currently on the `heroku-20` stack.
+
+[Supported Erlang/OTP versions](https://repo.hex.pm/builds/otp/ubuntu-20.04/builds.txt).
 
 ## Instructions
 
