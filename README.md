@@ -51,12 +51,18 @@ Click [https://pacific-savannah-85771.herokuapp.com/] to view the application in
 
 ### Screenshots
 
-1. ![Main todo list screen with items "Complete sample application" and "Fix bugs"](docs/screenshots/todo-index.png "Todo List Items")
-2. ![Double click to edit an existing item](docs/screenshots/todo-edit.png "Edit Item")
-3. ![Click the checkmark to complete the item](docs/screenshots/todo-mark-completed.png "Item completed")
-4. ![Click the down arrow to complete all items](docs/screenshots/todo-complete-all.png "Complete all Items")
-5. ![Listing of only active items](docs/screenshots/todo-active-list.png "Active Items")
-6. ![Listing of only completed items](docs/screenshots/todo-completed-list.png "Completed Items")
+1. Main todo list screen with items `Complete sample application` and `Fix bugs.`
+   ![Main todo list screen with items "Complete sample application" and "Fix bugs"](docs/screenshots/todo-index.png "Todo List Items")
+2. Double click to edit an existing item.
+   ![Double click to edit an existing item](docs/screenshots/todo-edit.png "Edit Item")
+3. Click the checkmark to complete the item.
+   ![Click the checkmark to complete the item](docs/screenshots/todo-mark-completed.png "Item completed")
+4. Click the down arrow to complete all items.
+   ![Click the down arrow to complete all items](docs/screenshots/todo-complete-all.png "Complete all Items")
+5. Listing of only active items.
+   ![Listing of only active items](docs/screenshots/todo-active-list.png "Active Items")
+6. Listing of only completed items.
+   ![Listing of only completed items](docs/screenshots/todo-completed-list.png "Completed Items")
 
 ## Phoenix Readme
 
