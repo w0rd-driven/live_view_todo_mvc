@@ -1,11 +1,14 @@
 # Heroku Deployment
 
+**Note: This application is installed at `pacific-savannah-85771.herokuapp.com`. If you wish to deploy to your own Heroku instance, replace the value below with your url.**
+
 ## Instructions
 
 We're following along with [the official documentation](https://hexdocs.pm/phoenix/1.5.9/heroku.html) with supplemental notes from [Deploy Elixir Phoenix to Heroku Containers with Docker](https://staknine.com/deploy-elixir-phoenix-heroku-containers-docker/) on StakNine.
 
 1. Get the `heroku` CLI installed locally
 2. Run `heroku create --buildpack hashnuke/elixir` to add the `Elixir Buildpack`.
+    1. This should create a new host url. Replace `pacific-savannah-85771.herokuapp.com` with this value in all places used below.
 3. Create `elixir_buildpack.config` that matches our `.tool-versions` file used by the `asdf` version manager.
 
     ```shell
